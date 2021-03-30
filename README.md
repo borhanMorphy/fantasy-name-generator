@@ -4,8 +4,16 @@
 ![alt text](https://cutewallpaper.org/21/frozen-throne-wallpaper/warcraft-3-frozen-throne-wallpaper-Google-Search-in-2019-.jpg)
 
 ## Contents
+* [Setup](#setup)
 * [Pretrained Model Usage](#pretrained-model-usage)
 * [Training From Scratch](#training)
+
+## Setup
+Install dependencies
+
+```script
+pip install -r requirements.txt
+```
 
 ## Pretrained Model Usage
 
