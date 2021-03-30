@@ -5,7 +5,7 @@ import random
 class Tokenizer():
     __default_vocab = " '()-abcdefghijklmnopqrstuvwxyzé"
 
-    def __init__(self, vocab: List[str] = [], max_length: int = 45):
+    def __init__(self, vocab: List[str] = [], max_length: int = 30):
         vocab = list(set(vocab + [v for v in self.__default_vocab]))
         vocab = sorted(vocab)
         self.vocab = ["P"] + vocab + ["E"]

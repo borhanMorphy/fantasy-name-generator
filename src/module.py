@@ -43,7 +43,7 @@ class NameGenerator(pl.LightningModule):
         if word is None:
             word = self.tokenizer.select_random_char()
 
-        tokenized_word = self.tokenizer.tokenize(word)
+        tokenized_word = self.tokenizer.tokenize(word).to(self.device)
 
         preds = self.__arch.predict(tokenized_word)
 
@@ -83,7 +83,7 @@ class NameGenerator(pl.LightningModule):
 
     def validation_epoch_end(self, val_outputs: List):
         loss = sum(val_outputs)/len(val_outputs)
-        
+
         self.log('loss/val', loss)
 
     def configure_optimizers(self):
@@ -130,7 +130,7 @@ class NameGenerator(pl.LightningModule):
         model = cls(arch=arch, hparams=hparams)
 
         model.load_state_dict(state_dict)
-        
+
         model.eval()
 
         return model

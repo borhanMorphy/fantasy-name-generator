@@ -41,7 +41,7 @@ class NaiveRNN(nn.Module):
 
         # get only last hidden information
         h = h[:, [-1], :]
-        
+
         # get only last sequance of the input
         pred = x[:, [-1]]
 
