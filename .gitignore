@@ -1,0 +1,17 @@
+# raw data
+data/*
+
+# python cache files
+__pycache__/*
+*.pyc
+.pytest_cache
+
+# other
+parsers
+
+# editor files
+.vscode
+
+# pytorch lightning
+lightning_logs
+checkpoints
