@@ -88,6 +88,8 @@ def build_from_yaml(yaml_path: str, resume: bool = False) -> Tuple[pl.LightningM
         if resume:
             trainer_configs.update({"resume_from_checkpoint": ckpt_file_path})
 
+    trainer_configs["logger"] = pl.loggers.TensorBoardLogger("./lightning_logs",name=arch)
+
     trainer_configs["callbacks"].append(
         pl.callbacks.LearningRateMonitor(logging_interval='step')
     )

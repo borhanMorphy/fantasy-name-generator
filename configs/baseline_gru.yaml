@@ -1,0 +1,40 @@
+arch: "NaiveGRU"
+
+hparams:
+  kwargs:
+    vocab_size: 34
+    embed_dim: 20
+    hidden_size: 32
+    num_layers: 4
+    num_classes: 34
+
+  lr: 0.005
+
+  loss:
+    name: "Cross Entropy"
+    id: "CE"
+
+  optimizer:
+    id: "adam"
+    weight_decay: 0.0005
+
+  scheduler:
+    id: null
+
+trainer:
+  gpus: 1
+  accumulate_grad_batches: 1
+  max_epochs: 400
+  gradient_clip_val: 0
+  precision: 32
+  profiler: null
+  check_val_every_n_epoch: 1
+  default_root_dir: "./"
+
+  checkpoint:
+    verbose: true
+    dirpath: "./checkpoints"
+    monitor: "loss/val"
+    mode: "min"
+    save_top_k: 1
+    filename: "{arch}_best"

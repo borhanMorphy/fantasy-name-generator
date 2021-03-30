@@ -1,9 +1,11 @@
 from typing import List
 import torch.nn as nn
 from .naive_rnn.module import NaiveRNN
+from .naive_gru.module import NaiveGRU
 
 __arch_mapper__ = {
-    "NaiveRNN": NaiveRNN
+    "NaiveRNN": NaiveRNN,
+    "NaiveGRU": NaiveGRU
 }
 
 def list_archs() -> List[str]:
@@ -14,7 +16,7 @@ def list_archs() -> List[str]:
 
     >>> import src
     >>> src.list_archs()
-    ['NaiveRNN']
+    ['NaiveGRU', 'NaiveRNN']
     """
     return sorted(__arch_mapper__.keys())
 

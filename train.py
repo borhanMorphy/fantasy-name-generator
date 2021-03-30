@@ -1,6 +1,7 @@
 from typing import Tuple
 import numpy as np
 import torch
+import pytorch_lightning as pl
 import argparse
 
 import src
@@ -26,6 +27,8 @@ def parse_arguments():
     ap.add_argument("--resume", "-r", action="store_true",
         help="if true than training will resume from checkpoint")
 
+    ap.add_argument("--seed", "-s", type=int)
+
     return ap.parse_args()
 
 def collate_fn(batch) -> Tuple[torch.Tensor, torch.Tensor]:
@@ -36,6 +39,9 @@ def collate_fn(batch) -> Tuple[torch.Tensor, torch.Tensor]:
     return inputs, targets
 
 def main(args):
+    if args.seed:
+        pl.seed_everything(args.seed)
+
     model, trainer = src.build_from_yaml(args.yaml_file, resume=args.resume)
 
     ds = torch.utils.data.ConcatDataset(
