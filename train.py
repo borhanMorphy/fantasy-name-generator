@@ -15,7 +15,7 @@ def parse_arguments():
         default="./configs/baseline_rnn.yaml", help="yaml file path")
 
     ap.add_argument("--datasets", "-ds", nargs='+', type=str, choices=src.list_datasets(),
-        default=["wowdb", "dotadb"], help="name of the datasets")
+        default=["wowdb", "dotadb", "lotrdb"], help="name of the datasets")
 
     ap.add_argument("--data-splits", "-dsp",
         type=lambda s: [float(i.strip()) for i in s.split(",")], default="0.8, 0.2",
@@ -33,8 +33,8 @@ def parse_arguments():
 
 def collate_fn(batch) -> Tuple[torch.Tensor, torch.Tensor]:
     inputs, targets = zip(*batch)
-    inputs = torch.cat(inputs, dim=0)
-    targets = torch.cat(targets, dim=0)
+    inputs = torch.stack(inputs, dim=0)
+    targets = torch.stack(targets, dim=0)
 
     return inputs, targets
 

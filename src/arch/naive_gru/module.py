@@ -5,8 +5,8 @@ import torch.nn.functional as F
 import json
 
 class NaiveGRU(nn.Module):
-    def __init__(self, vocab_size: int = 34, embed_dim: int = 10, hidden_size: int = 64,
-            num_classes: int = 34, padding_idx: int = 0, num_layers: int = 1):
+    def __init__(self, vocab_size: int = 47, embed_dim: int = 10, hidden_size: int = 64,
+            num_classes: int = 47, padding_idx: int = 0, num_layers: int = 1):
         super().__init__()
 
         self.embed = nn.Embedding(vocab_size, embed_dim, padding_idx=padding_idx)

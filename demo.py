@@ -9,6 +9,6 @@ args = ap.parse_args()
 
 model = src.NameGenerator.from_pretrained(args.ckpt)
 
-for ch in model.tokenizer.select_random_n_char(k=args.random_n):
-    name = model.predict(ch)
+for _ in range(args.random_n):
+    name = model.generate()
     print(name)

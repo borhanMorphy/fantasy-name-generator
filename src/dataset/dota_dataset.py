@@ -1,5 +1,4 @@
 from torch.utils.data import Dataset
-import json
 import os
 
 class DotaDataset(Dataset):
@@ -18,7 +17,9 @@ class DotaDataset(Dataset):
             name = name.lower()
             inputs = self.tokenizer(name, length=tokenizer.max_length)
             # shift by 1 character
-            targets = self.tokenizer(name[1:], length=tokenizer.max_length, add_end_token=True)
+            targets = inputs[1:] # ignore first input
+            inputs = inputs[:-1] # ignore last input
+
             self.data.append(inputs)
             self.targets.append(targets)
 

@@ -3,10 +3,12 @@ from torch.utils.data import Dataset
 
 from .wow_dataset import WowDataset
 from .dota_dataset import DotaDataset
+from .lotr_dataset import LotrDataset
 
 __dataset_mapper__ = {
     "wowdb": WowDataset,
-    "dotadb": DotaDataset
+    "dotadb": DotaDataset,
+    "lotrdb": LotrDataset
 }
 
 def list_datasets() -> List[str]:

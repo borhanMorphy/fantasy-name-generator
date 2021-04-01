@@ -39,15 +39,14 @@ class NameGenerator(pl.LightningModule):
         return self.__arch.forward(*args, **kwargs)
 
     @torch.no_grad()
-    def predict(self, word: Optional[str] = None) -> str:
-        if word is None:
-            word = self.tokenizer.select_random_char()
+    def generate(self) -> str:
+        word = self.tokenizer.get_start_token()
 
         tokenized_word = self.tokenizer.tokenize(word).to(self.device)
 
-        preds = self.__arch.predict(tokenized_word)
+        preds = self.__arch.predict(tokenized_word.unsqueeze(0))
 
-        return word + self.tokenizer.detokenize(preds)
+        return self.tokenizer.detokenize(preds.squeeze(0))
 
     def on_train_epoch_start(self):
         # TODO log hyperparameters/lr

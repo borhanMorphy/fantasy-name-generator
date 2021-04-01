@@ -1,17 +1,12 @@
 from torch.utils.data import Dataset
-import json
 import os
 
-class WowDataset(Dataset):
+class LotrDataset(Dataset):
     def __init__(self, tokenizer, root_path: str = "./data/", transform=None):
         super().__init__()
         names = []
-        with open(os.path.join(root_path, "wow_names.json"), "r") as foo:
-            data = json.load(foo)
-            for race in data:
-                for subrace in data[race]:
-                    for name in data[race][subrace]:
-                        names.append(name)
+        with open(os.path.join(root_path, "lotr_names.txt"), "r") as foo:
+            names = [name.lower() for name in foo.read().split("\n")]
 
         self.transform = transform
         self.tokenizer = tokenizer
